@@ -1,4 +1,4 @@
 class Ingredient < ApplicationRecord
-    has_many :cocktial_ingredients, dependent: :delete_all
-    has_many :cocktails, through: :cocktial_ingredient
+    has_many :cocktail_ingredients
+    has_many :cocktails, through: :cocktail_ingredients
 end

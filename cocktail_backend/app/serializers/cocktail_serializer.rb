@@ -1,4 +1,4 @@
 class CocktailSerializer
   include FastJsonapi::ObjectSerializer
-  attributes 
+  attributes :title, :image, :ingredients
 end
