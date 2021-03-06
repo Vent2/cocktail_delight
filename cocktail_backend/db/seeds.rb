@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-=======
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
@@ -60,4 +51,3 @@ c14.ingredients << [Ingredient.find_or_create_by(name: "3 dashes Angostura bitte
 
 c15 = Cocktail.create(title: "Aventura Cocktail", image: "https://bigoven-res.cloudinary.com/image/upload/d_recipe-no-image.jpg,t_recipe-480/aventura-cocktail-4c2ef7.jpg")
 c15.ingredients << [Ingredient.find_or_create_by(name: "1 1/2 oz Mezcal"), Ingredient.find_or_create_by(name: "3/4 oz Grand Marnier"), Ingredient.find_or_create_by(name: "1/4 oz St Germain"), Ingredient.find_or_create_by(name: "Juice of 1 Lime"), Ingredient.find_or_create_by(name: "Juice of 1/4 Lemon"), Ingredient.find_or_create_by(name: "Barspoonful Sugar"), Ingredient.find_or_create_by(name: "Handful Fresh Raspberries"), Ingredient.find_or_create_by(name: "Mint sprig (for garnish)")]
->>>>>>> 012f0638c1ecb952b40216dd13de6635dd686262
