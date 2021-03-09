@@ -2,44 +2,32 @@ const baseURL = "http://localhost:3000/cocktails"
 
 fetch(baseURL).then(response => response.json()).then(function(json){
   all = json.data
-  for (const cocktail in all) {
-    let div = cocktail_card(cocktail)
-    document.body.appendChild(div)
-  }
-})
-// .catch(error => console.log("Error: " + error.full_messages))
-
-
-function cocktail_card(cocktail) {
-  cocktail_obj = all[cocktail].attributes;
-  cocktail_id = all[cocktail].id;
-  cocktail_title = all[cocktail].title;
-  cocktail_img = all[cocktail].image;
-  cocktail_ingredients = all[cocktail].ingredients;
-
-
-
-
-
-
-
-
-
-}
-
-
-  
-
-// functions
-// function appendData(data) {
-//   const mainContainer = document.getElementById("myData");
-//   for (let i = 0; i < data.length; i++) {
-//     const div = document.createElement("div");
-//     div.innerHTML = 'Title: ' + data[i].title + ' ' + data[i];
-//     mainContainer.appendChild(div);
-//   }
-// }
-  // fetch(baseURL).then(response => response.json()).then(function(json){console.log(json)});
+  const mainContainer = document.getElementById("myData");
+  for (let i = 0; i < all.length; i++) {
+    cocktail_obj = all[i].attributes;
+    cocktail_id = cocktail_obj.id;
+    cocktail_title = cocktail_obj.title;
+    cocktail_img = cocktail_obj.image;
+    cocktail_ingredients = cocktail_obj.ingredients;
+    
+    let div = document.createElement("div");
+    div.innerHTML = 'Title: ' + cocktail_title + ' ' + cocktail_img;      
+    div.classList.add('card');
+    div.setAttribute("data-id", cocktail_id)
+    
+    let ul = document.createElement('ul')
+    for(const ingredient of cocktail_ingredients){
+        let li = document.createElement('li')
+        li.textContent = `${ingredient.name}`;
+        ul.appendChild(li)
+      }
+        div.appendChild(ul)
+        
+        mainContainer.appendChild(div);
+      }
+      
+    })
+  .catch(error => console.log("Error: " + error.full_messages))
   
   // let formData = {
   //     title: "Cocktail",
