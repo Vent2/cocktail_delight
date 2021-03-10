@@ -39,7 +39,6 @@ fetch(baseURL).then(response => response.json()).then(function(json){
         document.getElementById('cocktail-card-container').appendChild(card)
       }
 
-
 ////////////////////////////////////////
   // let formData = {
   //     title: "Cocktail",
