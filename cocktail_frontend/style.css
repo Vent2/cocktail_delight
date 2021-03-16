@@ -1,8 +1,20 @@
-html{
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+* {
+    box-sizing: border-box;
+} */
+
+body{
     background-image: linear-gradient(to right, #9e0400, #a90019, #b2002d, #b80040, #bd0054);
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: wrap;
+    align-items: flex;
+    justify-content: center;
+    margin: 0;
+    overflow-x: hidden;
 }
 .card {
-    background-color: white;
+    background-color: transparent;
     opacity: 90%;
     position: relative;
     box-shadow: 4px 4px 8px 0 #E82923;
@@ -17,15 +29,16 @@ padding: 3px 20px;
 }
 
 .card-info h1 {
-color: #D51362;
-text-align: center;
-text-shadow: 1px 1px red;
+    color: whitesmoke;
+    text-align: center;
+    text-shadow: 3px 2px #E82923;
 padding-bottom: 5px;
 border-bottom: 1px solid grey;
 }
 
 .card-info h3 {
-    color: #D51362;
+    color: whitesmoke;
+    text-align: center;
 }
 
 .card-info ul {
@@ -34,11 +47,12 @@ padding: 10px;
 }
 
 .card-info ul li {
+    color: white;
 margin-left: 20px;
 }
 
 .card img {
-width: 100%;
+    width: 100%;
 }
 
 #main-title {
@@ -49,14 +63,25 @@ text-shadow: 3px 2px #E82923;
 }
 
 #cocktail-card-container {
-display: flex;
-flex-flow: row wrap;
-justify-content: space-around;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.3);
+    /* transform: translateX(200%);
+    transition: transform 0.4s ease; */
 }
 
 
-
-#filter-drop-down {
-text-align: center;
+/* #cocktail-card-container:nth-of-type(even) {
+    transform: translateX(-200%);
 }
-  
+
+#cocktail-card-container.show {
+    transform: translateX(0);
+}
+
+#cocktail-card-container h2 {
+    font-size: 15px; */
+/* }  */

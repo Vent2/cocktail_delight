@@ -39,18 +39,50 @@ fetch(baseURL).then(response => response.json()).then(function(json){
         document.getElementById('cocktail-card-container').appendChild(card)
       }
 
-////////////////////////////////////////
-  // let formData = {
-  //     title: "Cocktail",
-  //     image: "none"
-  //   };
-     
-  //   let configObj = {
-  //     method: "",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       "Accept": "application/json"
-  //     },
-  //     body: JSON.stringify(formData)
-  //   };
-     
+
+// function postCocktailToApi(configurationObject) {
+//   return fetch(baseURL, configurationObject)
+//     .then(response => response.json())
+//     .catch(error => console.log("Error: " + error))
+// }
+
+
+function addCocktail() {
+  const form = document.getElementById('new-cocktail-form')
+  const ingredients = form[2].value.split(', ')
+  const cocktail = {"title": form[0].value, "image": form[1].value, "ingredients": ingredients};
+
+        const configurationObject = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify(cocktail)
+        };
+        fetch(baseURL, configurationObject)
+            .then(response => {response.json();})
+            // .then(response => console.log(response))
+            .catch(error => console.log("Error: " + error))
+          }
+
+    
+
+
+const btn = document.getElementById('form-submit')
+
+btn.addEventListener("click", function(e){
+  e.preventDefault();
+  addCocktail();
+  
+    // console.log("click");
+
+// const form = document.getElementById('new-cocktail-form')
+//   console.log(form)
+// const ingredients = form[2].value.split(', ')
+//   console.log(ingredients)
+// const cocktail = {"title": form[0].value, "image": form[1].value, "ingredients": ingredients};
+//   console.log(cocktail)
+
+  })
+
