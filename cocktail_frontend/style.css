@@ -81,3 +81,34 @@ text-shadow: 3px 2px #1f1e1e3a;
     border-radius: 10px;
     box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.3);
 }
+
+
+#new-cocktail-form {
+    margin: 0 auto;
+    margin-top: 10px;    
+    color: aliceblue;
+    text-align: center;
+    font-size: 1.3rem;
+    width: 20vw;        
+    box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);    
+    border-radius: 15px;    
+    background: rgba(255, 255, 255, 0.1);    
+    overflow: hidden;        
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.5); 
+}
+
+
+#new-cocktail-form #form-submit {
+    position: relative;
+    display: inline-block;
+    padding: 8px 20px;
+    margin-top: 15px;
+    background: white;
+    color: #000;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 500;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
