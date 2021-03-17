@@ -1,27 +1,30 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
-} */
+    font-family: 'Poppins', sans-serif;
+}
+
 
 body{
-    background-image: linear-gradient(to right, #9e0400, #a90019, #b2002d, #b80040, #bd0054);
-    font-family: 'Roboto', sans-serif;
     display: flex;
-    flex-direction: wrap;
-    align-items: flex;
     justify-content: center;
-    margin: 0;
-    overflow-x: hidden;
+    align-items: center;
+    min-height: 100vh;
+    background: #161623;
 }
 .card {
-    background-color: transparent;
-    opacity: 90%;
-    position: relative;
-    box-shadow: 4px 4px 8px 0 #E82923;
-    transition: 0.3s;
-    width: 32%;
-    margin-top: 20px;
-    font-family: "Times New Roman", Times, serif;
+    position: relative;   
+    width: 30vw;        
+    margin-top: 20px;    
+    box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);    
+    border-radius: 15px;    
+    background: rgba(255, 255, 255, 0.1);    
+    overflow: hidden;        
+    align-items: center;    
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.5);    
 }
   
 .card-info {
@@ -29,37 +32,45 @@ padding: 3px 20px;
 }
 
 .card-info h1 {
-    color: whitesmoke;
+    color: #ffa600da;
     text-align: center;
-    text-shadow: 3px 2px #E82923;
-padding-bottom: 5px;
-border-bottom: 1px solid grey;
+    padding-bottom: 5px;
+    border-bottom: 1px solid grey;
 }
 
 .card-info h3 {
+    font-size: 2rem;
     color: whitesmoke;
     text-align: center;
+    margin-top: 20px;    
+
 }
 
 .card-info ul {
-list-style-type: circle;
-padding: 10px;
+    list-style-type: circle;
+    padding: 10px;
 }
 
 .card-info ul li {
+    font-size: 1.5rem;
     color: white;
-margin-left: 20px;
+    margin-left: 20px;
+    padding: 20px;
+    text-align: center;
+    transition: 0.5s;
 }
 
 .card img {
+    padding: 10px;
     width: 100%;
+    border-radius: 15px;    
 }
 
 #main-title {
 text-align: center;
-color: whitesmoke;
-font-size: 2.5em;
-text-shadow: 3px 2px #E82923;
+color: #ffa600da;
+font-size: 4em;
+text-shadow: 3px 2px #1f1e1e3a;
 }
 
 #cocktail-card-container {
@@ -69,19 +80,4 @@ text-shadow: 3px 2px #E82923;
     margin: 10px;
     border-radius: 10px;
     box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.3);
-    /* transform: translateX(200%);
-    transition: transform 0.4s ease; */
 }
-
-
-/* #cocktail-card-container:nth-of-type(even) {
-    transform: translateX(-200%);
-}
-
-#cocktail-card-container.show {
-    transform: translateX(0);
-}
-
-#cocktail-card-container h2 {
-    font-size: 15px; */
-/* }  */
