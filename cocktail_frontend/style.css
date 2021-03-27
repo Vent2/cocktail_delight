@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:200,300,400,500,600,700,800,900&display=swap'); */
 * {
     margin: 0;
     padding: 0;
@@ -65,6 +65,15 @@ padding: 3px 20px;
     width: 100%;
     border-radius: 15px;    
 }
+.card h2 {
+    color: red;
+    font-size: 1.2rem;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    cursor: pointer;
+
+}
 
 #main-title {
 text-align: center;
@@ -89,7 +98,7 @@ text-shadow: 3px 2px #1f1e1e3a;
     color: aliceblue;
     text-align: center;
     font-size: 1.3rem;
-    width: 20vw;        
+    width: 30vw;        
     box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);    
     border-radius: 15px;    
     background: rgba(255, 255, 255, 0.1);    
@@ -103,7 +112,8 @@ text-shadow: 3px 2px #1f1e1e3a;
     position: relative;
     display: inline-block;
     padding: 8px 20px;
-    margin-top: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     background: white;
     color: #000;
     border-radius: 20px;
@@ -111,4 +121,5 @@ text-shadow: 3px 2px #1f1e1e3a;
     font-weight: 500;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     cursor: pointer;
+
 }

@@ -20,6 +20,17 @@ class CocktailsController < ApplicationController
         render json: CocktailSerializer.new(cocktail)
     end
 
+    def destroy
+        all = Cocktail.all
+        cocktail = Cocktail.find(params[:id])
+        if cocktail
+            cocktail.destroy
+            render json: CocktailSerializer.new(all)
+        else
+            render json: {error: 'Unable to delete Cocktail'}
+        end
+    end
+
     private
 
     def cocktail_params
