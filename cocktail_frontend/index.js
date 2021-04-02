@@ -43,7 +43,7 @@ fetch(baseURL).then(response => response.json()).then(function(json){
         const del = document.createElement('h2')
         del.innerHTML = "Remove"
         del.id = cocktail_id
-        del.onclick = handleRemove
+        del.onclick = removeCocktail;
 
         card.appendChild(del)
         cardInfo.appendChild(ul)
@@ -81,25 +81,24 @@ formSubmit.addEventListener("click", function(e){
   addCocktail();
 })
 
-function handleRemove(event) {
-  console.log(this);
-  this.parentNode.remove();  
-}
+// function handleRemove(event) {
+//   console.log(this);
+//   this.parentNode.remove();  
+// }
 
 
-function addCocktail() {
-  const ingredients = form[2].value.split(', ')
-  const cocktail = {"title": form[0].value, "image": form[1].value, "ingredients": ingredients};
-
+function removeCocktail() {
+  const cocktail_id = this.id;
+  
   const configurationObject = {
       method: "DELETE",
       headers: {
           "Content-Type": "application/json",
           "Accept": "application/json"
       },
-      body: JSON.stringify(cocktail)
+      body: JSON.stringify(cocktail_id)
   };
-  fetch(baseURL, configurationObject)
+  fetch(`http://localhost:3000/cocktails/${cocktail_id}`, configurationObject)
       .then(response => {response.json();})
       .catch(error => console.log("Error: " + error))
 }
