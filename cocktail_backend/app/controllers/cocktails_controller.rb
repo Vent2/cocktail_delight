@@ -5,20 +5,23 @@ class CocktailsController < ApplicationController
         
         render json: CocktailSerializer.new(cocktails)
     end
+    
+        def create
+            cocktail = Cocktail.new(cocktail_params)
+            ingredients = params[:ingredients].map { |ingredient| Ingredient.find_or_create_by(name: ingredient) }
+            cocktail.ingredients << ingredients
+            cocktail.save
+            render json: CocktailSerializer.new(cocktail)
+        end
+
+   
 
     def show
-        cocktail = Cocktail.find_by(id: params[:id])
-        
-        render json: CocktailSerializer.new(cocktail)
+        cocktail = Cocktail.order("created_at").last
+        render json: CocktailSerializer.new(cocktail)        
     end
 
-    def create
-        cocktail = Cocktail.new(cocktail_params)
-        ingredients = params[:ingredients].map { |ingredient| Ingredient.find_or_create_by(name: ingredient) }
-        cocktail.ingredients << ingredients
-        cocktail.save
-        render json: CocktailSerializer.new(cocktail)
-    end
+
 
     def destroy
         all = Cocktail.all
@@ -34,6 +37,7 @@ class CocktailsController < ApplicationController
     private
 
     def cocktail_params
-        params.permit(:title, :image)
+        params.require(:cocktail).permit(:title, :image)
     end
+
 end
