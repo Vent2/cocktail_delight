@@ -17,7 +17,8 @@ class CocktailsController < ApplicationController
    
 
     def show
-        cocktail = Cocktail.order("created_at").last
+        cocktail = Cocktail.find_by(params[:id])  
+
         render json: CocktailSerializer.new(cocktail)        
     end
 
@@ -25,7 +26,7 @@ class CocktailsController < ApplicationController
 
     def destroy
         all = Cocktail.all
-        cocktail = Cocktail.find(params[:id])
+        cocktail = Cocktail.find_by(params[:id])
         if cocktail
             cocktail.destroy
             render json: CocktailSerializer.new(all)
