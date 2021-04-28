@@ -28,7 +28,18 @@ class Cocktail{
     this.image = image;
     this.ingredients = ingredients;
     this.id = id;
+    Cocktail.all.push(this);
   }
+
+  // createCocktailCard() {
+  //   return `
+    
+    
+    
+    
+    
+  //   `;
+  // }
 
   createCocktailCard() {
     const card = document.createElement('div')
@@ -53,52 +64,23 @@ class Cocktail{
     }
 
     const del = document.createElement('BUTTON')
-      del.innerHTML = "X"
+      del.innerHTML = "Remove"
       del.id = this.id
-      // console.log(del.id)
-      // del.onclick = () => {
-      //   // const cocktail_id = this;
-      //   console.log(del.id)
-      //     const configurationObject = {
-      //       method: "DELETE",
-      //       // headers: {
-      //       //   "Content-Type": "application/json",
-      //       //   "Accept": "application/json"
-      //       // }
-      //       // body: JSON.stringify(cocktail_id)
-      //     };
-      //     // fetch(`http://localhost:3000/cocktails/${del.id}`, configurationObject)
-      //     // location.reload()  
-      //     // .then(response => response.json())
-      //       // .catch(error => console.log("Error: " + error));
-      // }
-
+      
     
     cardInfo.appendChild(ul)
     card.appendChild(del)
     card.appendChild(cardInfo)
-    // card.appendChild(footer)
     document.getElementById('cocktail-card-container').appendChild(card)
   }
 
-  removeCocktail() {
-    
-    const cocktail_id = this;
-
-    const configurationObject = {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
-      body: JSON.stringify(cocktail_id)
-    };
-    fetch(`http://localhost:3000/cocktails/${cocktail_id}`, configurationObject)
-      .then(response => response.json())
-      .catch(error => console.log("Error: " + error));
-  };
+  static findById = (id) => {
+    return this.all.find((cocktail) => parseInt(cocktail.id) === id)
+  }
 
 }
+
+Cocktail.all = [];
 
 class Cocktails {
   constructor() {
@@ -106,8 +88,10 @@ class Cocktails {
     this.removeCocktail = Cocktail.removeCocktail;
     this.adapter = new CocktailAdapter();
     this.formSubmit = document.getElementById('form-submit');
+    this.removeButtons = document.querySelectorAll('Button');
     this.cardContainer = document.getElementById('cocktail-card-container');
     this.addNewCocktail();
+    this.removeACocktail();
     this.fetchAndLoadCocktails();
   }
 
@@ -124,8 +108,36 @@ class Cocktails {
       e.preventDefault();
       this.addCocktail();
   }.bind(this))
-    this.cardContainer.addEventListener("click", (e) => removeCocktail(e))
-  }
+}
+
+  removeACocktail(){
+    // console.log(this.removeButtons)
+
+    // removeButtons.forEach((btn) => { btn.addEventListenter('click', (e) => { console. log(e.target.getAttribute('data-id') )})
+
+
+
+    document.addEventListener("click", (e) => {
+      const id = parseInt(e.target.getAttribute('id'));
+      const cocktail = Cocktail.findById(id)
+      // console.log(cocktail)
+
+      
+      const configurationObject = {
+            method: "DELETE"
+          };
+          this.adapter.removeCocktailFromApi(cocktail.id, configurationObject).then(() => {
+            function deleteCard() {
+              let elem = document.getElementById(id);
+              elem.parentNode.removeChild(elem);
+            }
+            deleteCard();
+            // location.reload();
+            // pageReload(true);
+          })
+        })
+  
+    }
 
   createArrayOfCocktailIngredients(ingredients) {
     let ingredientArray = [];
@@ -169,18 +181,7 @@ class Cocktails {
   this.adapter.postCocktailToApi(configurationObject).then(function(json) {
     cocktail.createCocktailCard();
   }.bind(this))
-  }
-
-  removeCocktail(e) {
-      const cocktail_id = this;
-      console.log(cocktail_id)
-    
-      const configurationObject = {
-        method: "DELETE"
-      };
-
-      this.adapter.removeCocktailFromApi(cocktail_id, configurationObject).then(console.log("click"))
-    };
+  };
 
 }
 

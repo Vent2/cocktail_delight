@@ -26,13 +26,12 @@ class CocktailsController < ApplicationController
 
     def destroy
         all = Cocktail.all
-        cocktail = Cocktail.find_by(params[:id])
-        if cocktail
+        # byebug
+        cocktail = Cocktail.find(params[:id])
             cocktail.destroy
             render json: CocktailSerializer.new(all)
-        else
-            render json: {error: 'Unable to delete Cocktail'}
-        end
+
+            # redirect_to action: "index"      
     end
 
     private
