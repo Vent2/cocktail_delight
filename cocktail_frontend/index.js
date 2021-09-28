@@ -31,19 +31,9 @@ class Cocktail{
     Cocktail.all.push(this);
   }
 
-  // createCocktailCard() {
-  //   return `
-    
-    
-    
-    
-    
-  //   `;
-  // }
-
   createCocktailCard() {
     const card = document.createElement('div')
-    card.id = this.id
+    card.id = this.id || Math.floor(Math.random() * 100)
     card.className = "card"
     const img = document.createElement('img')
     img.src = this.image
@@ -65,7 +55,7 @@ class Cocktail{
 
     const del = document.createElement('BUTTON')
       del.innerHTML = "Remove"
-      del.id = this.id
+      del.id = card.id
       
     
     cardInfo.appendChild(ul)
@@ -88,17 +78,19 @@ class Cocktails {
     this.removeCocktail = Cocktail.removeCocktail;
     this.adapter = new CocktailAdapter();
     this.formSubmit = document.getElementById('form-submit');
-    this.removeButtons = document.querySelectorAll('Button');
+    // this.removeButtons = document.querySelectorAll('Button');
     this.cardContainer = document.getElementById('cocktail-card-container');
     this.addNewCocktail();
-    this.removeACocktail();
     this.fetchAndLoadCocktails();
+    this.removeACocktail();
   }
 
   fetchAndLoadCocktails(){
     this.adapter.getCocktails()
     .then(cocktails => this.createCocktails(cocktails))
     .then(() => this.addCocktailsToDom())
+    // const form = document.getElementById('new-cocktail-form')
+    // form.reset();
   }
 
   
@@ -107,36 +99,37 @@ class Cocktails {
     this.formSubmit.addEventListener("click", function(e) {
       e.preventDefault();
       this.addCocktail();
-  }.bind(this))
+    }.bind(this))
+
+    
 }
 
   removeACocktail(){
-    // console.log(this.removeButtons)
 
-    // removeButtons.forEach((btn) => { btn.addEventListenter('click', (e) => { console. log(e.target.getAttribute('data-id') )})
+    // let removeButtons = document.querySelectorAll("Button");
+    // removeButtons.forEach((btn) => {
+    //   btn.addEventListenter('click', e => {
+    //     console.log(e.target.getAttribute('id'))
+    //   })
+    // })
 
-
-
+    
     document.addEventListener("click", (e) => {
       const id = parseInt(e.target.getAttribute('id'));
       const cocktail = Cocktail.findById(id)
-      // console.log(cocktail)
-
       
       const configurationObject = {
             method: "DELETE"
           };
-          this.adapter.removeCocktailFromApi(cocktail.id, configurationObject).then(() => {
+          this.adapter.removeCocktailFromApi(cocktail, configurationObject).then(() => {
             function deleteCard() {
               let elem = document.getElementById(id);
               elem.parentNode.removeChild(elem);
             }
             deleteCard();
-            // location.reload();
-            // pageReload(true);
           })
-        })
-  
+        }
+      )
     }
 
   createArrayOfCocktailIngredients(ingredients) {
@@ -181,7 +174,8 @@ class Cocktails {
   this.adapter.postCocktailToApi(configurationObject).then(function(json) {
     cocktail.createCocktailCard();
   }.bind(this))
-  };
+
+};
 
 }
 
