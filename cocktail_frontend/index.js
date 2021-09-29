@@ -15,7 +15,7 @@ class CocktailAdapter{
   }
 
   removeCocktailFromApi(cocktail_id, configurationObject) {
-    return fetch(`http://localhost:3000/cocktails/${cocktail_id}`, configurationObject)
+      fetch(`http://localhost:3000/cocktails/${cocktail_id}`, configurationObject)
       .then(response => response.json())
       .catch(error => console.log("Error: " + error))
   }
@@ -33,7 +33,7 @@ class Cocktail{
 
   createCocktailCard() {
     const card = document.createElement('div')
-    card.id = this.id || Math.floor(Math.random() * 100)
+    card.id = this.id? this.id : Math.floor(Math.random() * 100)
     card.className = "card"
     const img = document.createElement('img')
     img.src = this.image
@@ -54,8 +54,10 @@ class Cocktail{
     }
 
     const del = document.createElement('BUTTON')
-      del.innerHTML = "Remove"
-      del.id = card.id
+      del.className = 'Button'
+      del.innerHTML = "Delete"
+      del.id = card.id 
+      // ? card.id : Math.floor(Math.random() * 1000)
       
     
     cardInfo.appendChild(ul)
@@ -106,29 +108,30 @@ class Cocktails {
 
   removeACocktail(){
 
-    // let removeButtons = document.querySelectorAll("Button");
-    // removeButtons.forEach((btn) => {
-    //   btn.addEventListenter('click', e => {
-    //     console.log(e.target.getAttribute('id'))
-    //   })
-    // })
-
-    
     document.addEventListener("click", (e) => {
-      const id = parseInt(e.target.getAttribute('id'));
-      const cocktail = Cocktail.findById(id)
-      
-      const configurationObject = {
-            method: "DELETE"
-          };
-          this.adapter.removeCocktailFromApi(cocktail, configurationObject).then(() => {
-            function deleteCard() {
-              let elem = document.getElementById(id);
-              elem.parentNode.removeChild(elem);
+      // const id = parseInt(e.target.parentNode.id);
+      if (e.target.className === "Button") {
+        let id = e.target.id
+        // let card = document.getElementById(id).id
+        console.log(id)
+        // const cocktail = Cocktail.findById(id)
+        // console.log(cocktail)
+
+        const configurationObject = {
+              method: "DELETE"
+            };
+            this.adapter.removeCocktailFromApi(id, configurationObject)
+            // .then(() => {
+              function deleteCard() {
+                let elem = document.getElementById(id);
+                elem.parentNode.removeChild(elem);
+                elem.remove();
+              }
+              deleteCard();
             }
-            deleteCard();
-          })
-        }
+        
+      }
+        
       )
     }
 
@@ -173,7 +176,9 @@ class Cocktails {
   };
   this.adapter.postCocktailToApi(configurationObject).then(function(json) {
     cocktail.createCocktailCard();
-  }.bind(this))
+  }
+  // .bind(this)
+  )
 
 };
 

@@ -63,7 +63,8 @@ padding: 3px 20px;
 .card img {
     padding: 10px;
     width: 100%;
-    border-radius: 15px;    
+    border-radius: 15px;  
+    /* border: solid 1px red;   */
 }
 .card button {
     background-color: red;
