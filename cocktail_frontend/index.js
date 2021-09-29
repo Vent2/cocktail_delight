@@ -33,7 +33,7 @@ class Cocktail{
 
   createCocktailCard() {
     const card = document.createElement('div')
-    card.id = this.id? this.id : Math.floor(Math.random() * 100)
+    card.id = this.id? this.id : Math.floor(Math.random() * 1000)
     card.className = "card"
     const img = document.createElement('img')
     img.src = this.image
@@ -128,11 +128,9 @@ class Cocktails {
                 elem.remove();
               }
               deleteCard();
+              
             }
-        
-      }
-        
-      )
+    })
     }
 
   createArrayOfCocktailIngredients(ingredients) {
@@ -176,6 +174,8 @@ class Cocktails {
   };
   this.adapter.postCocktailToApi(configurationObject).then(function(json) {
     cocktail.createCocktailCard();
+    form.reset();
+    window.scrollTo(0,document.body.scrollHeight);
   }
   // .bind(this)
   )
