@@ -33,7 +33,8 @@ class Cocktail{
 
   createCocktailCard() {
     const card = document.createElement('div')
-    card.id = this.id? this.id : Math.floor(Math.random() * 1000)
+    card.id = this.id
+    // ? this.id : Math.floor(Math.random() * 1000)
     card.className = "card"
     const img = document.createElement('img')
     img.src = this.image
@@ -80,7 +81,6 @@ class Cocktails {
     this.removeCocktail = Cocktail.removeCocktail;
     this.adapter = new CocktailAdapter();
     this.formSubmit = document.getElementById('form-submit');
-    // this.removeButtons = document.querySelectorAll('Button');
     this.cardContainer = document.getElementById('cocktail-card-container');
     this.addNewCocktail();
     this.fetchAndLoadCocktails();
@@ -112,8 +112,9 @@ class Cocktails {
       // const id = parseInt(e.target.parentNode.id);
       if (e.target.className === "Button") {
         let id = e.target.id
+        let card = parseInt(e.target.parentNode.id)
         // let card = document.getElementById(id).id
-        console.log(id)
+        console.log(card, id)
         // const cocktail = Cocktail.findById(id)
         // console.log(cocktail)
 
@@ -172,7 +173,8 @@ class Cocktails {
           "ingredients": ingredients
       })
   };
-  this.adapter.postCocktailToApi(configurationObject).then(function(json) {
+  this.adapter.postCocktailToApi(configurationObject)
+  .then(() => {
     cocktail.createCocktailCard();
     form.reset();
     window.scrollTo(0,document.body.scrollHeight);
